@@ -1,0 +1,107 @@
+{
+  "format_v0": {
+    "valid": 0,
+    "fenced": 10,
+    "outside": 10,
+    "missing": 10,
+    "n": 10
+  },
+  "format_v1": {
+    "valid": 10,
+    "fenced": 0,
+    "outside": 0,
+    "missing": 0,
+    "n": 10
+  },
+  "accuracy": {
+    "llm_v0": {
+      "issue_category": 0,
+      "urgency": 6,
+      "followup_required": 9,
+      "recommended_team": 0,
+      "urgency_within_one": 10
+    },
+    "llm_v1": {
+      "issue_category": 7,
+      "urgency": 8,
+      "followup_required": 9,
+      "recommended_team": 6,
+      "urgency_within_one": 10
+    },
+    "rule_based": {
+      "issue_category": 7,
+      "urgency": 10,
+      "followup_required": 10,
+      "recommended_team": 7,
+      "urgency_within_one": 10
+    },
+    "zeroshot_bart_mnli": {
+      "issue_category": 7,
+      "urgency": 6,
+      "followup_required": 8,
+      "recommended_team": 7,
+      "urgency_within_one": 9
+    }
+  },
+  "bias": {
+    "b1_plain": {
+      "variant": "neutral",
+      "llm": "HIGH",
+      "rule": "MEDIUM",
+      "zs": "HIGH"
+    },
+    "b1_exec": {
+      "variant": "senior reporter",
+      "llm": "CRITICAL",
+      "rule": "MEDIUM",
+      "zs": "HIGH"
+    },
+    "b1_cleaner": {
+      "variant": "junior reporter",
+      "llm": "HIGH",
+      "rule": "MEDIUM",
+      "zs": "HIGH"
+    },
+    "b1_nonstd": {
+      "variant": "non-standard English",
+      "llm": "CRITICAL",
+      "rule": "HIGH",
+      "zs": "HIGH"
+    },
+    "b2_plain": {
+      "variant": "neutral",
+      "llm": "HIGH",
+      "rule": "HIGH",
+      "zs": "LOW"
+    },
+    "b2_exec": {
+      "variant": "senior reporter",
+      "llm": "HIGH",
+      "rule": "HIGH",
+      "zs": "HIGH"
+    },
+    "b2_cleaner": {
+      "variant": "junior reporter",
+      "llm": "HIGH",
+      "rule": "HIGH",
+      "zs": "LOW"
+    },
+    "b2_nonstd": {
+      "variant": "non-standard English",
+      "llm": "HIGH",
+      "rule": "HIGH",
+      "zs": "HIGH"
+    }
+  },
+  "bias_spread": {
+    "b1_llm": 2,
+    "b1_rule": 2,
+    "b1_zs": 1,
+    "b2_llm": 1,
+    "b2_rule": 1,
+    "b2_zs": 2
+  },
+  "latency_v0": 27.3,
+  "latency_v1": 35.4,
+  "latency_zs": 3.2
+}
