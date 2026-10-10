@@ -1,0 +1,20 @@
+digraph G {
+  rankdir=TB; nodesep=0.3; ranksep=0.5; fontname="Helvetica";
+  node [shape=box, style="filled", fillcolor="white", fontname="Helvetica", fontsize=10, color="#333333"];
+  edge [fontname="Helvetica", fontsize=9, color="#333333"];
+  U [label="Staff member\n(web chat or Teams)"];
+  D [label="Dialogflow CX agent\n(built and tested)", fillcolor="#d9d9d9"];
+  subgraph cluster_c { label="Conceptual cloud workflow (not built)"; style="dashed"; color="#777777"; fontsize=10;
+    W [label="Webhook function\nCloud Functions or Azure Functions"];
+    Q [label="Message queue\nPub/Sub or Service Bus"];
+    T [label="Ticket in service desk\n(Facilities queue)"];
+    N [label="Notification to\nFacilities or Accessibility Office"];
+    S [label="Structured record\nBigQuery or Azure SQL"];
+    B [label="ESG dashboard\nLooker Studio or Power BI"];
+    O [label="On-call alert and\nlive agent handoff"];
+  }
+  U -> D [label="message"];
+  D -> W [label="routine or\naccessibility report"];
+  W -> Q; Q -> T; Q -> N; Q -> S; S -> B;
+  D -> O [label="urgent hazard or\nrequest for a person", style=bold];
+}
