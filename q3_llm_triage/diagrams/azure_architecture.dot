@@ -1,0 +1,29 @@
+digraph G {
+  rankdir=TB; fontname="Helvetica"; nodesep=0.3; ranksep=0.5;
+  node [shape=box, style="filled", fillcolor="white", fontname="Helvetica", fontsize=10, color="#333333"];
+  edge [fontname="Helvetica", fontsize=9, color="#333333"];
+  subgraph cluster_in { label="1 Intake"; style=filled; fillcolor="#f0f0f0"; color="#777777";
+    I1 [label="Microsoft Forms\nTeams channel\nshared mailbox"]; }
+  subgraph cluster_orch { label="2 Orchestration (private network, managed identity)"; style=filled; fillcolor="#e4e4e4"; color="#777777";
+    L1 [label="Azure Logic Apps\n(trigger and routing)"];
+    S1 [label="Azure Service Bus\nqueue and dead-letter queue"];
+    F1 [label="Azure Functions\n(orchestrator)"];
+    PII [label="Azure AI Language\nPII redaction"];
+    SH [label="Azure AI Content Safety\nPrompt Shields"];
+    LLM [label="Azure OpenAI deployment\nstructured output (JSON schema)"];
+    V [label="Validation and safety rules\nschema check, keyword override\nconfidence threshold"];
+  }
+  subgraph cluster_out { label="3 Outputs"; style=filled; fillcolor="#f0f0f0"; color="#777777";
+    HR [label="Human review queue\n(Teams adaptive card)"];
+    T [label="Ticket in service desk\nor Planner"];
+    DB [label="Azure Cosmos DB\nraw text, redacted text,\nJSON, reviewer decision"];
+    PB [label="Power BI\nESG operations dashboard"];
+  }
+  subgraph cluster_gov { label="Governance and operations"; style=filled; fillcolor="#d6d6d6"; color="#777777";
+    KV [label="Azure Key Vault"]; MON [label="Azure Monitor and\nApplication Insights"]; PUR [label="Microsoft Purview\nand Entra ID RBAC"];
+  }
+  I1 -> L1; L1 -> S1; S1 -> F1; F1 -> PII; PII -> SH; SH -> LLM; LLM -> V;
+  V -> T [label="valid and\nconfident"]; V -> HR [label="CRITICAL, HIGH sensitivity,\ninvalid or low confidence"];
+  V -> DB; DB -> PB; HR -> DB;
+  F1 -> KV [style=dotted]; F1 -> MON [style=dotted]; DB -> PUR [style=dotted];
+}
