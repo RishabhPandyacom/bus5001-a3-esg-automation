@@ -12,7 +12,6 @@ This repository holds the supporting evidence for the written report.
 | q4_notebooklm | NotebookLM (Gemini Notebook) screenshots and the experiment log |
 | report | Script that builds the Word report, and the report itself |
 
-AI tools: Claude (Anthropic) was used as an assistant under my direction. See the AI Acknowledgement section of the report.
 
 ## Q1 - restore the agent
 In the Conversational Agents console, open Agent settings, choose Restore agent, select Upload and pick `q1_dialogflow/esg_agent_restore.zip`. Then open the simulator and follow `q1_dialogflow/demo_script.md`.
