@@ -145,6 +145,26 @@ def caption(kind, title, key=None):
     return n
 
 
+def _link(p, url, size):
+    rid = doc.part.relate_to(url, "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink", is_external=True)
+    h = OxmlElement("w:hyperlink")
+    h.set(qn("r:id"), rid)
+    r = OxmlElement("w:r")
+    rpr = OxmlElement("w:rPr")
+    u = OxmlElement("w:u")
+    u.set(qn("w:val"), "single")
+    rpr.append(u)
+    sz = OxmlElement("w:sz")
+    sz.set(qn("w:val"), str(int(size * 2)))
+    rpr.append(sz)
+    r.append(rpr)
+    t = OxmlElement("w:t")
+    t.text = url
+    r.append(t)
+    h.append(r)
+    p._p.append(h)
+
+
 def T(title, header, rows, widths, size=9.5, note=None, numbered=True, key=None):
     if numbered:
         caption("Table", title, key)
@@ -167,7 +187,10 @@ def T(title, header, rows, widths, size=9.5, note=None, numbered=True, key=None)
         for i, v in enumerate(row):
             cells[i].width = Cm(widths[i])
             cells[i].text = ""
-            _runs(cells[i].paragraphs[0], str(v), size=size)
+            if str(v).startswith("http"):
+                _link(cells[i].paragraphs[0], str(v), size)
+            else:
+                _runs(cells[i].paragraphs[0], str(v), size=size)
             cells[i].paragraphs[0].paragraph_format.space_after = Pt(2)
             cells[i].paragraphs[0].paragraph_format.line_spacing = 1.0
     if note:
@@ -228,7 +251,7 @@ T(
     "Submission links",
     ["Item", "Link"],
     [
-        ["Q1 demo video (Microsoft Stream)", "[Insert the Stream link after recording and uploading the video]"],
+        ["Q1 demo video (Echo360)", "https://echo360.net.au/media/b3029147-9b0e-45f1-9526-3c48c0495eb9/h5p"],
         ["GitHub repository (Q3 and Q4 logs, diagrams, Dialogflow agent)", "https://github.com/RishabhPandyacom/bus5001-a3-esg-automation"],
     ],
     [6.5, 9.4],
