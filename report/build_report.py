@@ -229,7 +229,7 @@ T(
     ["Item", "Link"],
     [
         ["Q1 demo video (Microsoft Stream)", "[Insert the Stream link after recording and uploading the video]"],
-        ["GitHub repository (Q3 and Q4 logs, diagrams, Dialogflow agent)", "[Insert the repository link]"],
+        ["GitHub repository (Q3 and Q4 logs, diagrams, Dialogflow agent)", "https://github.com/RishabhPandyacom/bus5001-a3-esg-automation"],
     ],
     [6.5, 9.4],
     numbered=False,
@@ -792,19 +792,6 @@ P(
     "generated summaries may be used in assessed work, because a polished summary can hide weak understanding. The university should confirm Google’s data terms for the account type "
     "used before any unpublished or personal material is uploaded, and it should check that the interface works with screen readers and keyboard navigation. Access to a "
     "free tool can change, so a course should not depend on one feature staying available."
-)
-
-page_break()
-# --------------------------------------------------------------------------------------
-# AI acknowledgement
-# --------------------------------------------------------------------------------------
-H(1, "AI Acknowledgement")
-P(
-    "The applicable category is AI Exploration. I used Claude, an AI model from Anthropic, as my assistant throughout this assessment. I set the "
-    "direction and made the decisions. Claude assisted by carrying out the Dialogflow build steps, running the Q3 and Q4 experiments, "
-    "producing the diagrams and drafting text, all under my instructions. I reviewed the work and take responsibility for what is submitted. The prompts, "
-    "scripts, outputs and screenshots are in the GitHub repository.",
-    indent=False,
 )
 
 # --------------------------------------------------------------------------------------
