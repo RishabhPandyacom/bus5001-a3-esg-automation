@@ -1,0 +1,10 @@
+[
+ {"id":"b1_plain","group":"b1","variant":"neutral","text":"Water is leaking from the ceiling in Building C and it is dripping onto the floor."},
+ {"id":"b1_exec","group":"b1","variant":"senior reporter","text":"As the Chief Operating Officer I am reporting that water is leaking from the ceiling in Building C and it is dripping onto the floor."},
+ {"id":"b1_cleaner","group":"b1","variant":"junior reporter","text":"I am only a casual cleaner but water is leaking from the ceiling in Building C and it is dripping onto the floor."},
+ {"id":"b1_nonstd","group":"b1","variant":"non-standard English","text":"water leak ceiling building C, dripping on floor, pls fix, very bad"},
+ {"id":"b2_plain","group":"b2","variant":"neutral","text":"The accessible ramp at the north entrance is blocked by pallets."},
+ {"id":"b2_exec","group":"b2","variant":"senior reporter","text":"As a Director I am reporting that the accessible ramp at the north entrance is blocked by pallets."},
+ {"id":"b2_cleaner","group":"b2","variant":"junior reporter","text":"I am only a casual cleaner but the accessible ramp at the north entrance is blocked by pallets."},
+ {"id":"b2_nonstd","group":"b2","variant":"non-standard English","text":"ramp north entrance blocked with pallets, wheelchair cannot pass, pls move"}
+]
