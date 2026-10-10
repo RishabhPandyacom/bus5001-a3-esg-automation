@@ -1,0 +1,37 @@
+digraph G {
+  rankdir=TB; fontname="Helvetica"; fontsize=11; nodesep=0.35; ranksep=0.55; compound=true;
+  node [shape=box, style="filled", fillcolor="white", fontname="Helvetica", fontsize=10, color="#333333"];
+  edge [fontname="Helvetica", fontsize=9, color="#333333"];
+
+  subgraph cluster_att { label="Threat actor (UNC5537)"; style="filled"; fillcolor="#e6e6e6"; color="#666666";
+    A1 [label="Infostealer malware\n(Vidar, Redline, Lumma and others)"];
+    A2 [label="Stolen credential lists\n(some dated back to 2020)"];
+    A3 [label="VPN and VPS infrastructure\nSnowSQL, Snowsight, DBeaver, FROSTBITE"];
+  }
+
+  subgraph cluster_cust { label="Customer responsibility (IAM, endpoints, data, network access)"; style="filled"; fillcolor="#f4f4f4"; color="#666666";
+    C1 [label="Contractor laptop\n(personal and work use)"];
+    C2 [label="Snowflake user account\npassword only, no MFA,\ncredential not rotated"];
+    C3 [label="Account network policy\n(no IP allow-list)"];
+    C4 [label="Customer data in tables\n(call records, customer data)"];
+  }
+
+  subgraph cluster_prov { label="Provider responsibility (SaaS data platform)"; style="filled"; fillcolor="#d9d9d9"; color="#666666";
+    P1 [label="Snowflake service layer\n(authentication service, query engine,\nvirtual warehouses)"];
+    P2 [label="Storage and compute\non AWS, Azure or Google Cloud (IaaS)"];
+  }
+
+  X [label="Exfiltration\nCOPY INTO stage, GET,\nupload to MEGA", fillcolor="#bfbfbf"];
+  Y [label="Extortion and\nsale of data", fillcolor="#bfbfbf"];
+
+  A1 -> C1 [label="1 infects", style=dashed];
+  C1 -> A2 [label="2 credentials\nstolen"];
+  A2 -> A3 [label="3 buys or reuses"];
+  A3 -> C2 [label="4 valid login\nfrom VPN address"];
+  C2 -> P1 [label="5 authenticates"];
+  C3 -> P1 [label="6 does not restrict\nthe source address", style=dashed];
+  P1 -> C4 [label="7 queries"];
+  P1 -> P2 [style=dotted, label="runs on"];
+  C4 -> X [label="8"];
+    X -> Y [label="9"];
+}
